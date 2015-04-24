@@ -1,0 +1,108 @@
+﻿@model Catalog.Service.CatalogViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>index</title>
+</head>
+<body>
+    <div>
+        @if (Model.CurrentCategory == null)
+        {
+            <h2>@Model.Catalog.Name</h2>
+            <ul>
+                @foreach (var cat in Model.Catalog.Categories)
+                {
+                    <li>
+                        <a href="@cat.Path">@cat.Name (@cat.TotalProducts())</a>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h2>@Model.CurrentCategory.Name</h2>
+            if (Model.CurrentCategory.Parent != null)
+            { 
+                <a href="@Model.CurrentCategory.Parent.Path">@Model.CurrentCategory.Parent.Name</a>
+            }
+            else
+            {
+                <a href="/@Model.Catalog.Url">@Model.Catalog.Name</a>
+            }
+            <ul>
+                @foreach (var cat in Model.CurrentCategory.Categories)
+                {
+                    <li>
+                        <a href="@cat.Path">@cat.Name (@cat.TotalProducts())</a> 
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div>
+
+        <h1>Offerte</h1>
+        @Html.Action("Small", "cart", new { cart = "offerte" })
+    </div>
+
+    <div>
+
+        <h1>Basket</h1>
+        @Html.Action("Small", "cart", new { cart = "basket" })
+    </div>
+
+    <div>
+        <ul>
+            @{
+                var start = Model.CurrentPage > 5 ? Model.CurrentPage - 5 : 1;
+                var end = Model.CurrentPage + 5 > 10 ? Model.CurrentPage + 5 : 10;
+            }
+            @for (int i = start; i < end && i <= Model.TotalPages; i++)
+            {
+                <li>
+                    @if(Model.CurrentCategory != null)
+                    { 
+                        <a href="@Model.CurrentCategory.Path/page/@i">@i</a>
+                    }
+                    else
+                    {
+                        <a href="/@Model.Catalog.Url/page/@i">@i</a>
+                    }
+                </li>
+            }
+        </ul>
+        <ul>
+            @foreach (var product in Model.Products)
+            {
+                <li>
+                    <h4>@product.Name</h4>
+                    <p>@product.Attributes["Description"]</p>
+                    <p>ItemCode: @product.ItemCode</p>
+                    <a href="/product/@product.Url">details</a>
+                    @using(Html.BeginForm("AddProduct", "Cart", FormMethod.Post))
+                    {
+                        @Html.Hidden("returnUrl", Request.Url.ToString())
+                        @Html.Hidden("productUrl", product.Url)
+                        foreach(var key in product.Options.Keys)
+                        { 
+                            @Html.Hidden("selectedKey", key);
+                            @Html.DropDownList("selectedValue", new SelectList(product.Options[key]))
+                        }
+
+                        <button type="submit" name="cart" value="basket">Mandje</button>
+                        <button type="submit" name="cart" value="offerte">Offerte</button>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

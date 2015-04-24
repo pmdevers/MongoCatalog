@@ -1,0 +1,65 @@
+﻿@model Catalog.Service.ProductViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+
+        <h1>Offerte</h1>
+        @Html.Action("Index", "cart", new { cart = "offerte" })
+    </div>
+
+    <div>
+
+        <h1>Basket</h1>
+        @Html.Action("Index", "cart", new { cart = "basket" })
+    </div>
+
+    <div> 
+        <a href="@Model.Product.CategoryPaths.Last()">back</a>
+        <h1>@Model.Product.Name</h1>
+        <h2>ItemCode: @Model.Product.ItemCode</h2>
+
+        <p>
+            @Model.Product.Attributes["Description"]
+        </p>
+
+        <ul>
+        @foreach(var article in Model.Product.Articles)
+        {
+            <li>
+                ItemCode: @article.Ean <br />
+                Options: 
+                @foreach (var item in article.Options)
+                {
+                    <span>@item.Key, @item.Value</span>
+                   
+                }
+                
+                @using(Html.BeginForm("AddArticle", "Cart", FormMethod.Post))
+                {
+                    <div>
+                        @Html.Hidden("returnUrl", Request.Url)
+                        @Html.Hidden("ean", article.Ean)
+                        @Html.TextBox("Quantity", 1)
+                        <button type="submit" name="cart" value="basket">Add</button>
+                        <button type="submit" name="cart" value="offerte">Add</button>
+                    </div>    
+                }
+
+                
+            </li>     
+        }
+       </ul>
+    </div>
+</body>
+</html>

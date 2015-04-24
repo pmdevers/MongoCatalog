@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Catalog.Data.Address">
+    <Position X="10" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEAAAAAAAAAIIAAAAAAAAEAAAAAAAAIAAAAAAAg=</HashCode>
+      <FileName>Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Catalog.Data.Article">
+    <Position X="5.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEQAAAAAAAAAAAAAAAAAAAEAIAAAAAABAAAA=</HashCode>
+      <FileName>Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Catalog.Data.Cart">
+    <Position X="5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="id" Hidden="true" />
+      <Field Name="items" Hidden="true" />
+      <Field Name="mongo" Hidden="true" />
+      <Field Name="shippingMethod" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAQCABIACgAAQQQAAAAEEAAAAAAAJAAIgA=</HashCode>
+      <FileName>Cart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DeliveryAddres" />
+      <Property Name="InvoiceAddress" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Catalog.Data.CartItem">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>CartItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Article" />
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Catalog.Data.Catalogue">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="categories" Hidden="true" />
+      <Field Name="id" Hidden="true" />
+      <Field Name="mongo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABIAAIAAAAAAAABAAAAAAQQQAAAAkAAACAAAAAAAAgA=</HashCode>
+      <FileName>Catalogue.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Categories" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Catalog.Data.Category">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="categories" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAJAAAAAQAQRAAAAEAAASAAAAAAAAAA=</HashCode>
+      <FileName>Category.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Catalog" />
+      <Property Name="Parent" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Categories" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Catalog.Data.Order">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <Members>
+      <Field Name="id" Hidden="true" />
+      <Field Name="mongo" Hidden="true" />
+      <Field Name="orderItems" Hidden="true" />
+      <Field Name="transactions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAKAAYIAAAAACAAIACAAAQAAAAAAAEAAAAAAAAAAggA=</HashCode>
+      <FileName>Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DeliveryAddress" />
+      <Property Name="InvoiceAddress" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+      <Property Name="Transactions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Catalog.Data.OrderItem">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEQAgAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>OrderItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Catalog.Data.Product">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <Members>
+      <Field Name="id" Hidden="true" />
+      <Field Name="mongo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIALAAAAAABAAEAAAQQQAAAAAEAASgAAAIBAAgA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Articles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Catalog.Data.Transaction">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Catalog.Data.Transaction.TransactionType">
+        <TypeIdentifier>
+          <NewMemberFileName>Transactions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAACQAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Transactions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Catalog.Data.IShippingMethod">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IShippingMethod.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
