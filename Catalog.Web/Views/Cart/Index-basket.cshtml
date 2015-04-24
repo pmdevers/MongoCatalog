@@ -1,0 +1,76 @@
+﻿@model Catalog.Service.CartViewModel
+
+<div>
+    @if (Model.Cart.Items.Any())
+    {
+        <a href="/cart/Print1?cart=basket">afdrukken</a>
+
+        <table>
+
+
+            @foreach (var item in Model.Cart.Items)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Article.Ean</td>
+                    <td>
+                        @using (@Html.BeginForm("Update", "Cart", FormMethod.Post))
+                        {
+                            @Html.Hidden("returnUrl", Request.Url)
+                            @Html.Hidden("cart", Model.Cart.Name)
+                            @Html.Hidden("ean", item.Ean);
+                            @Html.TextBox("quantity", item.Quantity);
+                            <button type="submit">Update</button>
+                        }
+
+                    </td>
+                    <td>@item.Price</td>
+                    <td>@item.TotalPrice</td>
+                    <td>@Html.ActionLink("delete", "delete", new { ean = item.Ean, returnUrl = Request.Url.ToString(), cart = Model.Cart.Name })</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3">
+                    Methods
+                </td>
+                <td>
+                    @using (@Html.BeginForm("SetShippingMethod", "Cart", FormMethod.Post))
+                    {
+                        @Html.Hidden("returnUrl", Request.Url)
+                        @Html.Hidden("cart", Model.Cart.Name)
+
+                        <select name="methodName" onchange=" this.form.submit(); ">
+                            @foreach (var method in Model.Cart.AvailableShippingMethods())
+                            {
+                                if (method.Name == Model.Cart.ShippingMethod)
+                                {
+                                    <option selected value="@method.Name">@method.Name ( @method.GetPrice(Model.Cart) )</option>
+                                }
+                                else
+                                {
+                                    <option value="@method.Name">@method.Name ( @method.GetPrice(Model.Cart) )</option>
+                                }
+                            }
+                        </select>
+                    }
+                </td>
+                <td>
+                    @Model.Cart.CurrentShippingMethod().GetPrice(Model.Cart)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    TotalPrice
+                </td>
+                <td>
+                    @Model.Cart.TotalPrice
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <p>No items.</p>
+    }
+</div>

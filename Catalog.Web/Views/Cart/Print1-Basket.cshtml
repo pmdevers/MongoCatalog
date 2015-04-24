@@ -1,0 +1,121 @@
+﻿@model Catalog.Data.Cart
+<FlowDocument PageWidth="816" PageHeight="1056" PagePadding="96,96,96,96" AllowDrop="True" NumberSubstitution.CultureSource="User" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+  <Paragraph TextAlignment="Center" LineHeight="1.15">
+    <Run FontSize="48">Invoice</Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12">Patrick Evers</Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12">Vredenrustlaan 152</Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12">2543 SW Den Haag</Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12">OrderNumber : @Model.CartNumber</Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+  <Table CellSpacing="0" BorderThickness="0,0,0,0">
+    <TableRowGroup>
+      <TableRow>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF" Background="#FF000000">
+          <Paragraph>
+            <Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF" xml:space="preserve">Track and trace </Run>
+          </Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF" Background="#FF000000">
+          <Paragraph>
+            <Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">Klant nummer</Run>
+          </Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF" Background="#FF000000">
+          <Paragraph>
+            <Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">Verzend methoden</Run>
+          </Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF" Background="#FF000000">
+          <Paragraph>
+            <Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">verzend datum</Run>
+          </Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+    <TableRowGroup>
+      <TableRow>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>Test</Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph></Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>@Model.ShippingMethod</Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>Test</Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+  </Table>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve"> </Run>
+  </Paragraph>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve"> </Run>
+  </Paragraph>
+  <Table CellSpacing="0" BorderThickness="1,1,1,1">
+    <TableRowGroup>
+      <TableRow>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FF000000" Background="#FF000000">
+          <Paragraph><Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">ItemCode</Run></Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FF000000" Background="#FF000000">
+          <Paragraph><Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">Omschrijving</Run></Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FF000000" Background="#FF000000">
+          <Paragraph><Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">Aantal</Run></Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FF000000" Background="#FF000000">
+          <Paragraph><Run FontWeight="Bold" FontSize="12" Foreground="#FFFFFFFF">Prijs</Run></Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+    
+	@foreach(var item in Model.Items) {
+    <TableRowGroup>
+      <TableRow>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>@item.Ean</Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>@item.Product.Name</Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>@item.Quantity</Paragraph>
+        </TableCell>
+        <TableCell BorderThickness="1,1,1,1" BorderBrush="#FFFFFFFF">
+          <Paragraph>@item.TotalPrice</Paragraph>
+        </TableCell>
+      </TableRow>
+    </TableRowGroup>
+	}
+  </Table>
+  <Paragraph LineHeight="1.15">
+    <Run FontSize="12" xml:space="preserve" />
+  </Paragraph>
+</FlowDocument>

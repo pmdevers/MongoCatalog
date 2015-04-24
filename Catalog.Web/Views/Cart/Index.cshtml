@@ -1,0 +1,49 @@
+﻿@model Catalog.Data.Cart
+
+<table>
+
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Article.Ean</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price</td>
+            <td>@Html.ActionLink("delete", "delete", new { ean = item.Ean, returnUrl = Request.Url.ToString(), cart = Model.Name })</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="4">
+            Methods
+        </td>
+        <td>
+            @using (@Html.BeginForm("SetShippingMethod", "Cart", FormMethod.Post))
+            {
+                @Html.Hidden("returnUrl", Request.Url)
+                @Html.Hidden("cart", Model.Name)
+
+                <select name="methodName" onchange="this.form.submit();">
+                    @foreach (var method in Model.AvailableShippingMethods())
+                    {
+                        if(method.Name == Model.ShippingMethod) {
+                            <option selected  value="@method.Name">@method.Name ( @method.GetPrice(Model) )</option>
+                        }
+                        else
+                        {
+                            <option value="@method.Name">@method.Name ( @method.GetPrice(Model) )</option>
+                        }
+                    }
+                </select>
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4">
+            TotalPrice
+        </td>
+        <td>
+            @Model.TotalPrice
+        </td>
+    </tr>
+</table>
