@@ -109,7 +109,7 @@ namespace Catalog.Data
                 order.Add(item);
             }
 
-            order.Add(new Transaction(Transaction.TransactionType.Credit, 200, "OpenAmount"));
+            //order.Add(new Transaction(Transaction.TransactionType.Credit, 200, "OpenAmount"));
 
             order.Save();
             return order;

@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Catalog.Data\Catalog.Data\Catalog.csproj">
+    <ProjectReference Include="..\Catalog.Data\Catalog.csproj">
       <Project>{2e20b158-2cb2-440f-8da5-7b5587a8a47a}</Project>
       <Name>Catalog</Name>
     </ProjectReference>

@@ -17,7 +17,7 @@ namespace Catalog.Data
 
         [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
         private ObjectId id;
-        private Mongo<Catalogue> mongo;
+        private readonly Mongo<Catalogue> mongo;
 
         public string Name { get; private set; }
         public string Url { get { return UrlSlugger.ToUrlSlug(Name); } }
@@ -53,7 +53,7 @@ namespace Catalog.Data
             path = this.Url + "/" + path;
             var segments = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             Category category = null;
-            int depth = 1;
+            var depth = 1;
             if (segments.Length <= 1)
                 return null;
 
@@ -71,10 +71,7 @@ namespace Catalog.Data
         {
             var mongo = new Mongo<Catalogue>();
 
-            var catalog = mongo.Get(x => x.Name.ToLower() == catalogName.ToLower());
-
-            if (catalog == null)
-                catalog = new Catalogue(catalogName);
+            var catalog = mongo.Get(x => x.Name.ToLower() == catalogName.ToLower()) ?? new Catalogue(catalogName);
 
             PopulateParents(catalog, catalog.Categories);
 
@@ -98,8 +95,8 @@ namespace Catalog.Data
 
         public PagedResults<Product> GetProducts(int page, int pageSize)
         {
-            var mongo = new Mongo<Product>();
-            return mongo.GetPagedResult(x => x.CategoryPaths.Contains("/" + Url), page, pageSize);
+            var productCollection = new Mongo<Product>();
+            return productCollection.GetPagedResult(x => x.CategoryPaths.Contains("/" + Url), page, pageSize);
         }
 
         public void Save()

@@ -29,6 +29,11 @@ namespace Catalog.Data
             }
         }
 
+        public decimal VatPercentage
+        {
+            get { return Tax.GetVatPercentage(Ean); }
+        }
+
         [BsonIgnore]
         public Product Product
         {

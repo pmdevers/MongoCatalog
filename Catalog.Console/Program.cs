@@ -45,6 +45,8 @@ namespace Catalog.Console
 
             var order = cart.CreateOrder();
 
+            order.Add(new OrderComment{Comment = "Hallo test", Username = "Patrick Evers", IsPrivate = false});
+
             order.Save();
 
             //cart.AddArticle(product.Articles.First().Ean, 1);

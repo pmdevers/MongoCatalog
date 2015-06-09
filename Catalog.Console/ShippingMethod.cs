@@ -17,7 +17,8 @@ namespace Catalog.Console
                 Ean = "00000001",
                 Description = "Shipping via Air baloon.",
                 Price = 100,
-                Quantity = 1
+                Quantity = 1,
+                VatPercentage = 21
             };
 
             return orderItem;

@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson">
-      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,12 +54,14 @@
     <Compile Include="IShippingMethod.cs" />
     <Compile Include="MongoObject.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="OrderComment.cs" />
     <Compile Include="OrderItem.cs" />
     <Compile Include="PagedResults.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShippingMethod1.cs" />
     <Compile Include="ShippingMethod.cs" />
+    <Compile Include="Tax.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Utils\GenericTree.cs" />
     <Compile Include="Utils\Settings.cs" />
@@ -70,7 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Catalog.Framework\Catalog.Framework.csproj">
+    <ProjectReference Include="..\Catalog.Framework\Catalog.Framework.csproj">
       <Project>{e0e7ab3d-4075-449d-88b2-8258ee9d6396}</Project>
       <Name>Catalog.Framework</Name>
     </ProjectReference>

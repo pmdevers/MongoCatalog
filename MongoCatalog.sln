@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog", "Catalog.Data\Catalog.Data\Catalog.csproj", "{2E20B158-2CB2-440F-8DA5-7B5587A8A47A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog", "Catalog.Data\Catalog.csproj", "{2E20B158-2CB2-440F-8DA5-7B5587A8A47A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Console", "Catalog.Console\Catalog.Console.csproj", "{9872485C-6DA9-4ACF-A4A7-BAA2D752FD09}"
 EndProject
